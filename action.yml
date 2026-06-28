@@ -39,6 +39,7 @@ runs:
         VERSION: ${{ inputs.version }}
       run: |
         install_dir=~/.local/share/bats
+        rm -rf "${install_dir}"
         mkdir -p "${install_dir}"
         cd ~/.cache/setup-bats
         unzip artifact.zip
