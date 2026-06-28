@@ -18,7 +18,7 @@ runs:
       uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
       with:
         path: ~/.cache/setup-bats
-        key: setup-bats-1|${{ inputs.version }}|${{ inputs.checksum }}
+        key: setup-bats-2|${{ inputs.version }}|${{ inputs.checksum }}
 
     - name: Download bats
       if: steps.cache.outputs.cache-hit != 'true'
@@ -45,4 +45,6 @@ runs:
         unzip artifact.zip
         cd "bats-core-${VERSION}"
         ./install.sh "${install_dir}"
+        cd ..
+        rm -rf "bats-core-${VERSION}"
         echo "${install_dir}/bin" >>"${GITHUB_PATH}"
