@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://www.schemastore.org/github-action.json
+
+name: 'Setup Bats'
+description: 'Installs Bats into your GitHub Workflows'
+inputs:
+  version:
+    description: 'Version to install, ex: 1.13.0'
+    default: '1.13.0'
+  checksum:
+    description: 'SHA256 checksum of download artifact'
+    default: 'e7da1327c00de5a889293c04e22a26f1e05493eec46478f4c64442e3d8f7586d'
+
+runs:
+  using: "composite"
+  steps:
+    - id: cache
+      name: Cache
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
+      with:
+        path: ~/.cache/setup-bats
+        key: setup-bats-1|${{ inputs.version }}|${{ inputs.checksum }}
+
+    - name: Download bats
+      if: steps.cache.outputs.cache-hit != 'true'
+      shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+        CHECKSUM: ${{ inputs.checksum }}
+      run: |
+        mkdir -p ~/.cache/setup-bats
+        "${GITHUB_ACTION_PATH}/download-artifact.sh" \
+          "https://github.com/bats-core/bats-core/archive/refs/tags/v${VERSION}.zip" \
+          ~/.cache/setup-bats/artifact.zip \
+          "${CHECKSUM}"
+
+    - name: Install bats
+      shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+      run: |
+        install_dir=~/.local/share/bats
+        mkdir -p "${install_dir}"
+        cd ~/.cache/setup-bats
+        unzip artifact.zip
+        cd "bats-core-${VERSION}"
+        ./install.sh "${install_dir}"
+        echo "${install_dir}/bin" >>"${GITHUB_PATH}"

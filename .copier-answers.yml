@@ -1,0 +1,11 @@
+_commit: b5e8477
+_src_path: gh:pcrockett/template-setup-action
+action_description: Installs Bats into your GitHub Workflows
+action_human_friendly_name: Setup Bats
+action_name: setup-bats
+github_org: pcrockett
+tool_doc_url: https://github.com/bats-core/bats-core
+tool_download_url: https://github.com/bats-core/bats-core/archive/refs/tags/v${VERSION}.zip
+tool_latest_checksum: e7da1327c00de5a889293c04e22a26f1e05493eec46478f4c64442e3d8f7586d
+tool_latest_version: 1.13.0
+tool_name: bats
