@@ -1,4 +1,4 @@
-_commit: b5e8477
+_commit: 21f9d42
 _src_path: gh:pcrockett/template-setup-action
 action_description: Installs Bats into your GitHub Workflows
 action_human_friendly_name: Setup Bats

@@ -10,6 +10,7 @@ lint:
 release:
     gh release create --generate-notes --draft
 
+# Update default version and checksum to latest GitHub release
 update:
     #!/usr/bin/env bash
     set -euo pipefail
