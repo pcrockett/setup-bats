@@ -50,3 +50,7 @@ update:
     mv "${temp_dir}/action.yml" .
 
     git diff action.yml
+
+# Update this repo from its copier template
+update-template:
+    copier update
