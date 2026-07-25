@@ -5,10 +5,10 @@ description: 'Installs Bats into your GitHub Workflows'
 inputs:
   version:
     description: 'Version to install, ex: 1.13.0'
-    default: '1.13.0'
+    default: '1.14.0'
   checksum:
     description: 'SHA256 checksum of download artifact'
-    default: 'e7da1327c00de5a889293c04e22a26f1e05493eec46478f4c64442e3d8f7586d'
+    default: '927bace89adb50cfc5012109753d0f641f65bbf4987442be5616e2b17ae6c60b'
 
 runs:
   using: "composite"
